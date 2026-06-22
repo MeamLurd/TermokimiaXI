@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termokimia - Materi Riset</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --black: #111111;
+    --gray-100: #f5f5f5;
+    --gray-200: #e8e8e8;
+    --gray-400: #aaaaaa;
+    --gray-600: #666666;
+    --gray-800: #333333;
+    --blue: #2563eb;
+    --blue-light: #eff4ff;
+    --blue-border: #bfcffc;
+    --red: #dc2626;
+    --red-light: #fff0f0;
+    --red-border: #fbc2c2;
+    --green: #16a34a;
+    --green-light: #f0faf3;
+    --green-border: #bbf0ce;
+    --amber: #b45309;
+    --amber-light: #fffbeb;
+    --amber-border: #fde68a;
+    --mono: 'Courier New', Courier, monospace;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Layout */
+  .page-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Header */
+  header {
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--gray-200);
+    margin-bottom: 2.5rem;
+  }
+  .header-eyebrow {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-size: 2.25rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--black);
+    margin-bottom: 0.75rem;
+  }
+  header p {
+    font-size: 1rem;
+    color: var(--gray-600);
+    max-width: 540px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* Navigation */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--gray-200);
+    margin-bottom: 2.5rem;
+  }
+  nav button {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray-600);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.65rem 1.1rem 0.6rem;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-bottom: -1px;
+  }
+  nav button.active {
+    color: var(--black);
+    border-bottom-color: var(--black);
+    font-weight: 500;
+  }
+
+  /* Sections */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* Prose */
+  .prose {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: var(--gray-800);
+    margin-bottom: 1.25rem;
+  }
+  .prose strong { font-weight: 600; color: var(--black); }
+  .prose:last-child { margin-bottom: 0; }
+
+  sans { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+  /* Section heading */
+  .sec-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+  .sec-title:first-child { margin-top: 0; }
+
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    margin-bottom: 0.75rem;
+    margin-top: 2.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-200);
+  }
+  h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+  h3 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  h3:first-child { margin-top: 0; }
+
+  /* Code / formula */
+  .formula {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    background: var(--gray-100);
+    border-left: 2px solid var(--gray-200);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    color: var(--black);
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Grid */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+
+  @media (max-width: 600px) {
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+  }
+
+  /* Box */
+  .box {
+    border: 1px solid var(--gray-200);
+    padding: 1.1rem 1.25rem;
+    background: var(--white);
+  }
+  .box-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    margin-bottom: 0.5rem;
+  }
+  .box-value {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.3;
+  }
+  .box-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8125rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-top: 0.4rem;
+  }
+
+  /* Colored box */
+  .box-blue  { border-color: var(--blue-border); background: var(--blue-light); }
+  .box-red   { border-color: var(--red-border);  background: var(--red-light); }
+  .box-green { border-color: var(--green-border); background: var(--green-light); }
+  .box-amber { border-color: var(--amber-border); background: var(--amber-light); }
+
+  .box-blue  .box-label { color: var(--blue); }
+  .box-red   .box-label { color: var(--red); }
+  .box-green .box-label { color: var(--green); }
+  .box-amber .box-label { color: var(--amber); }
+
+  /* Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.75rem 0; }
+  .tag {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border: 1px solid;
+  }
+  .tag-blue  { color: var(--blue);  border-color: var(--blue-border);  background: var(--blue-light); }
+  .tag-red   { color: var(--red);   border-color: var(--red-border);   background: var(--red-light); }
+  .tag-green { color: var(--green); border-color: var(--green-border); background: var(--green-light); }
+  .tag-amber { color: var(--amber); border-color: var(--amber-border); background: var(--amber-light); }
+  .tag-gray  { color: var(--gray-600); border-color: var(--gray-200); background: var(--gray-100); }
+
+  /* Steps */
+  .steps { margin: 1rem 0; }
+  .step {
+    display: flex;
+    gap: 0.875rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--gray-200);
+    align-items: flex-start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-n {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gray-400);
+    min-width: 20px;
+    padding-top: 3px;
+  }
+  .step-t {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8375rem;
+    color: var(--gray-800);
+    line-height: 1.6;
+  }
+  .step-t strong { color: var(--black); font-weight: 600; }
+
+  /* Table */
+  .tbl-wrap { overflow-x: auto; margin: 1rem 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8125rem;
+  }
+  th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--black);
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+  }
+  td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-800);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* Inline equation */
+  .eq {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    background: var(--gray-100);
+    padding: 1px 5px;
+    color: var(--black);
+  }
+
+  /* Hess chain */
+  .hess-row {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-800);
+    line-height: 1.6;
+  }
+  .hess-row:last-child { border-bottom: none; }
+  .hess-result {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    padding: 0.6rem 0.75rem;
+    border-top: 2px solid var(--black);
+    color: var(--black);
+    font-weight: 600;
+    line-height: 1.6;
+  }
+  .cancel { text-decoration: line-through; color: var(--gray-400); }
+  .hess-wrap {
+    border: 1px solid var(--gray-200);
+    margin: 1rem 0;
+  }
+
+  /* Phenomenona row */
+  .pheno {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .pheno:last-child { border-bottom: none; }
+  .pheno-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+  .pheno-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .pheno-badge {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 2px 7px;
+    border: 1px solid;
+  }
+  .badge-exo { color: var(--red); border-color: var(--red-border); background: var(--red-light); }
+  .badge-endo { color: var(--blue); border-color: var(--blue-border); background: var(--blue-light); }
+  .pheno-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8125rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+  .pheno-text strong { color: var(--black); font-weight: 600; }
+
+  /* Calc */
+  .calc-block {
+    border: 1px solid var(--gray-200);
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+  }
+  .calc-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+  }
+  .calc-field {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .calc-field label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    min-width: 190px;
+  }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    border: 1px solid var(--gray-200);
+    padding: 5px 9px;
+    width: 130px;
+    background: var(--white);
+    color: var(--black);
+    outline: none;
+  }
+  .calc-field input:focus {
+    border-color: var(--black);
+  }
+  .calc-btn {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--black);
+    background: var(--black);
+    color: var(--white);
+    padding: 7px 20px;
+    cursor: pointer;
+    margin-top: 0.75rem;
+  }
+  .calc-result {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    background: var(--gray-100);
+    padding: 0.75rem 1rem;
+    margin-top: 0.75rem;
+    color: var(--black);
+    line-height: 1.8;
+    min-height: 42px;
+  }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--gray-200); margin: 2rem 0; }
+
+  /* Diagram SVG wrapper */
+  .svg-wrap { margin: 1.25rem 0; }
+
+  /* Energy diagram custom */
+  .energy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+  .energy-panel {
+    border: 1px solid var(--gray-200);
+    padding: 1rem;
+  }
+  .energy-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .energy-label.exo { color: var(--red); }
+  .energy-label.endo { color: var(--blue); }
+
+  @media (max-width: 600px) {
+    .energy-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.625rem; }
+    .page-wrap { padding: 0 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header>
+    <div class="header-eyebrow">Materi Riset</div>
+    <h1>Termokimia</h1>
+    <p>Konsep lengkap untuk mendukung penyelesaian riset: entalpi, sistem, reaksi termal, metode perhitungan, dan kaitan fenomena terkini.</p>
+  </header>
+
+  <nav id="main-nav">
+    <button class="active" onclick="show('konsep',this)">Konsep Dasar</button>
+    <button onclick="show('entalpi',this)">Entalpi</button>
+    <button onclick="show('sistem',this)">Sistem &amp; Lingkungan</button>
+    <button onclick="show('reaksi',this)">Eksoterm &amp; Endoterm</button>
+    <button onclick="show('jenis',this)">Jenis &Delta;H</button>
+    <button onclick="show('hitung',this)">Cara Menghitung</button>
+    <button onclick="show('fenomena',this)">Fenomena Terkini</button>
+  </nav>
+
+  <!-- ======================== KONSEP DASAR ======================== -->
+  <div id="konsep" class="section active">
+
+    <h2>Apa itu Termokimia?</h2>
+    <p class="prose">Termokimia adalah cabang kimia yang mempelajari <strong>perpindahan energi berupa kalor</strong> yang menyertai reaksi kimia dan perubahan fisika. Fokus utamanya adalah mengukur dan menganalisis kalor yang dilepas atau diserap sistem selama reaksi berlangsung.</p>
+    <p class="prose">Seluruh konsep ini berlandaskan <strong>Hukum Kekekalan Energi (Hukum Termodinamika I)</strong>: energi tidak dapat diciptakan atau dimusnahkan, hanya berpindah atau berubah bentuk.</p>
+
+    <div class="grid3">
+      <div class="box">
+        <div class="box-label">Prinsip dasar</div>
+        <div class="box-value" style="font-size:1rem;line-height:1.5">Energi tidak dapat diciptakan atau dimusnahkan</div>
+      </div>
+      <div class="box">
+        <div class="box-label">Satuan SI</div>
+        <div class="box-value">Joule (J)</div>
+        <div class="box-text">1 kJ = 1000 J</div>
+      </div>
+      <div class="box">
+        <div class="box-label">Satuan lama</div>
+        <div class="box-value">Kalori (cal)</div>
+        <div class="box-text">1 cal = 4,184 J</div>
+      </div>
+    </div>
+
+    <h2>Konversi Satuan</h2>
+    <div class="formula">1 kalori    = 4,184 Joule
+1 kkal      = 4184 Joule
+1 kJ        = 1000 J
+1 kJ/mol    = satuan umum delta H reaksi</div>
+
+    <h2>Posisi Termokimia dalam Ilmu Kimia</h2>
+    <p class="prose">Termokimia menjadi jembatan antara <strong>struktur molekul</strong> dan <strong>perilaku energetik</strong> suatu zat. Bidang ini bersinggungan erat dengan termodinamika, kinetika kimia, dan kimia material.</p>
+    <div class="tags">
+      <span class="tag tag-blue">Termodinamika</span>
+      <span class="tag tag-blue">Kalorimetri</span>
+      <span class="tag tag-green">Kinetika Kimia</span>
+      <span class="tag tag-green">Ikatan Kimia</span>
+      <span class="tag tag-amber">Energi Bebas Gibbs</span>
+      <span class="tag tag-amber">Entropi</span>
+      <span class="tag tag-gray">Elektrokimia</span>
+      <span class="tag tag-gray">Kimia Material</span>
+    </div>
+
+  </div>
+
+  <!-- ======================== ENTALPI ======================== -->
+  <div id="entalpi" class="section">
+
+    <h2>Entalpi (H)</h2>
+    <p class="prose">Entalpi adalah kandungan kalor total suatu sistem pada tekanan konstan. Entalpi bukan besaran mutlak yang bisa diukur langsung karena yang dapat diamati hanya <strong>perubahan entalpi (&Delta;H)</strong>, yaitu selisih entalpi produk dan reaktan.</p>
+    <div class="formula">H = U + PV
+
+di mana:
+  U  = energi dalam sistem (internal energy)
+  P  = tekanan sistem
+  V  = volume sistem</div>
+
+    <h2>Perubahan Entalpi (&Delta;H)</h2>
+    <p class="prose">Pada kondisi tekanan konstan (kondisi laboratorium biasa), perubahan entalpi sama dengan kalor yang diserap atau dilepas sistem:</p>
+    <div class="formula">&Delta;H = H_produk - H_reaktan
+&Delta;H = q_p   (kalor pada tekanan konstan)</div>
+
+    <div class="grid2">
+      <div class="box box-red">
+        <div class="box-label">Delta H negatif (-)</div>
+        <div class="box-text" style="font-size:0.875rem;color:#333">Reaksi <strong>eksoterm</strong>. Kalor dilepas ke lingkungan. Entalpi produk lebih rendah dari entalpi reaktan. Suhu lingkungan naik.</div>
+      </div>
+      <div class="box box-blue">
+        <div class="box-label">Delta H positif (+)</div>
+        <div class="box-text" style="font-size:0.875rem;color:#333">Reaksi <strong>endoterm</strong>. Kalor diserap dari lingkungan. Entalpi produk lebih tinggi dari entalpi reaktan. Suhu lingkungan turun.</div>
+      </div>
+    </div>
+
+    <h2>Sifat-Sifat Entalpi</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <div class="step-t"><strong>Fungsi keadaan:</strong> nilai &Delta;H hanya bergantung pada keadaan awal dan akhir reaksi, bukan pada jalur atau mekanisme reaksi yang ditempuh.</div>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <div class="step-t"><strong>Besaran ekstensif:</strong> nilainya bergantung pada jumlah mol zat yang bereaksi. Jika mol digandakan, &Delta;H juga ikut berlipat.</div>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <div class="step-t"><strong>Aditif:</strong> &Delta;H dapat dijumlahkan untuk reaksi-reaksi yang disusun secara bertahap. Ini menjadi dasar Hukum Hess.</div>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <div class="step-t"><strong>Reversibel dalam tanda:</strong> jika reaksi dibalik, tanda &Delta;H berubah. Jika koefisien dikali n, &Delta;H juga dikali n.</div>
+      </div>
+    </div>
+
+    <h2>Hubungan &Delta;H dengan &Delta;U</h2>
+    <p class="prose">Pada reaksi yang melibatkan gas, terdapat perbedaan antara kalor pada tekanan konstan (&Delta;H) dan kalor pada volume konstan (&Delta;U):</p>
+    <div class="formula">&Delta;H = &Delta;U + &Delta;n_gas &times; R &times; T
+
+di mana:
+  &Delta;n_gas = mol gas produk - mol gas reaktan
+  R           = 8,314 J/mol K
+  T           = suhu mutlak (Kelvin)</div>
+    <p class="prose">Untuk reaksi larutan atau padatan, selisih &Delta;H dan &Delta;U sangat kecil sehingga keduanya dianggap setara.</p>
+
+  </div>
+
+  <!-- ======================== SISTEM & LINGKUNGAN ======================== -->
+  <div id="sistem" class="section">
+
+    <h2>Definisi Sistem dan Lingkungan</h2>
+    <p class="prose"><strong>Sistem</strong> adalah bagian dari alam semesta yang sedang kita amati atau teliti, misalnya larutan dalam labu, gas dalam silinder, atau campuran reaktan dalam kalorimeter. <strong>Lingkungan</strong> adalah semua hal di luar sistem yang berinteraksi dengannya.</p>
+
+    <h2>Tiga Jenis Sistem</h2>
+    <div class="grid3">
+      <div class="box">
+        <div class="box-label">Sistem Terbuka</div>
+        <div class="box-text" style="margin-top:0.5rem">
+          <strong>Materi:</strong> bisa keluar/masuk<br>
+          <strong>Energi:</strong> bisa keluar/masuk<br><br>
+          <em>Contoh:</em> air mendidih dalam panci terbuka, organisme hidup, nyala api lilin, kolam terbuka.
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-label">Sistem Tertutup</div>
+        <div class="box-text" style="margin-top:0.5rem">
+          <strong>Materi:</strong> tidak bisa keluar/masuk<br>
+          <strong>Energi:</strong> bisa keluar/masuk<br><br>
+          <em>Contoh:</em> air dalam panci tertutup, balon karet, kalorimeter sederhana, tabung reaksi tersumbat.
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-label">Sistem Terisolasi</div>
+        <div class="box-text" style="margin-top:0.5rem">
+          <strong>Materi:</strong> tidak bisa keluar/masuk<br>
+          <strong>Energi:</strong> tidak bisa keluar/masuk<br><br>
+          <em>Contoh:</em> termos sempurna (ideal), kalorimeter bom (pendekatan), ruang vakum terisolasi.
+        </div>
+      </div>
+    </div>
+
+    <h2>Konvensi Tanda Kalor</h2>
+    <p class="prose">Tanda kalor dalam termokimia ditetapkan dari sudut pandang sistem, bukan lingkungan:</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Peristiwa</th>
+            <th>q sistem</th>
+            <th>q lingkungan</th>
+            <th>Jenis reaksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kalor masuk ke sistem</td>
+            <td style="color:var(--blue);font-weight:600">+ (positif)</td>
+            <td style="color:var(--red)">- (negatif)</td>
+            <td>Endoterm</td>
+          </tr>
+          <tr>
+            <td>Kalor keluar dari sistem</td>
+            <td style="color:var(--red);font-weight:600">- (negatif)</td>
+            <td style="color:var(--blue)">+ (positif)</td>
+            <td>Eksoterm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="formula">Hukum kekekalan energi:
+q_sistem + q_lingkungan = 0
+
+Artinya: kalor yang dilepas sistem = kalor yang diterima lingkungan, dan sebaliknya.</div>
+
+    <h2>Relevansi dalam Desain Eksperimen</h2>
+    <p class="prose">Pemilihan model sistem sangat memengaruhi desain dan interpretasi eksperimen. Kalorimeter bom (bomb calorimeter) mendekati sistem terisolasi, digunakan untuk mengukur energi pembakaran pada volume konstan (&Delta;U). Sebaliknya, kebanyakan reaksi di laboratorium berlangsung dalam kondisi tekanan konstan sehingga nilai yang terukur adalah &Delta;H.</p>
+    <p class="prose">Penting untuk selalu menyebutkan kondisi sistem saat melaporkan data termokimia agar data dapat direproduksi dan dibandingkan dengan literatur.</p>
+
+  </div>
+
+  <!-- ======================== EKSOTERM & ENDOTERM ======================== -->
+  <div id="reaksi" class="section">
+
+    <h2>Reaksi Eksoterm</h2>
+    <p class="prose">Pada reaksi eksoterm, sistem <strong>melepas kalor</strong> ke lingkungan. Akibatnya suhu lingkungan naik dan terasa panas. Entalpi produk lebih rendah dari reaktan, sehingga &Delta;H bernilai negatif.</p>
+    <div class="formula">Reaktan  -->  Produk + Kalor
+&Delta;H &lt; 0</div>
+
+    <div class="box box-red" style="margin:1rem 0">
+      <div class="box-label">Contoh reaksi eksoterm</div>
+      <div class="box-text" style="font-size:0.875rem;color:#333;margin-top:0.4rem">
+        Pembakaran bahan bakar (bensin, gas alam, kayu) &bull; Respirasi seluler (glukosa + O<sub>2</sub>) &bull; Reaksi netralisasi asam-basa kuat &bull; Pembekuan air &bull; Reaksi logam aktif dengan asam &bull; Karat besi (oksidasi lambat) &bull; Reaksi termit (Al + Fe<sub>2</sub>O<sub>3</sub>)
+      </div>
+    </div>
+
+    <h2>Reaksi Endoterm</h2>
+    <p class="prose">Pada reaksi endoterm, sistem <strong>menyerap kalor</strong> dari lingkungan. Akibatnya suhu lingkungan turun dan terasa dingin. Entalpi produk lebih tinggi dari reaktan, sehingga &Delta;H bernilai positif.</p>
+    <div class="formula">Reaktan + Kalor  -->  Produk
+&Delta;H &gt; 0</div>
+
+    <div class="box box-blue" style="margin:1rem 0">
+      <div class="box-label">Contoh reaksi endoterm</div>
+      <div class="box-text" style="font-size:0.875rem;color:#333;margin-top:0.4rem">
+        Fotosintesis (CO<sub>2</sub> + H<sub>2</sub>O + cahaya --> glukosa) &bull; Penguapan air &bull; Pelarutan NH<sub>4</sub>NO<sub>3</sub> dalam air &bull; Dekomposisi termal CaCO<sub>3</sub> &bull; Pencairan es &bull; Elektrolisis air &bull; Memasak makanan
+      </div>
+    </div>
+
+    <h2>Diagram Tingkat Energi</h2>
+    <p class="prose">Diagram di bawah menunjukkan perbedaan profil energi antara reaksi eksoterm dan endoterm. Sumbu vertikal mewakili entalpi (H), sumbu horizontal mewakili koordinat reaksi (kemajuan reaksi).</p>
+
+    <div class="energy-grid">
+      <div class="energy-panel">
+        <div class="energy-label exo">Eksoterm (&Delta;H negatif)</div>
+        <svg width="100%" viewBox="0 0 260 150" role="img" aria-label="Diagram energi eksoterm">
+          <title>Diagram energi eksoterm</title>
+          <!-- Reaktan level -->
+          <line x1="20" y1="40" x2="90" y2="40" stroke="#111" stroke-width="2"/>
+          <text x="55" y="30" text-anchor="middle" font-family="'Helvetica Neue',sans-serif" font-size="11" fill="#666">Reaktan</text>
+          <!-- Curve down -->
+          <path d="M90 40 C140 42 160 110 185 110" fill="none" stroke="#aaa" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <!-- Produk level (lower) -->
+          <line x1="185" y1="110" x2="248" y2="110" stroke="#111" stroke-width="2"/>
+          <text x="216" y="128" text-anchor="middle" font-family="'Helvetica Neue',sans-serif" font-size="11" fill="#666">Produk</text>
+          <!-- delta H arrow -->
+          <line x1="155" y1="42" x2="155" y2="108" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrR)" marker-start="url(#arrR)"/>
+          <text x="168" y="80" font-family="'Helvetica Neue',sans-serif" font-size="10" fill="#dc2626">&Delta;H &lt; 0</text>
+          <!-- Y axis label -->
+          <text x="10" y="80" font-family="'Helvetica Neue',sans-serif" font-size="10" fill="#aaa" transform="rotate(-90,10,80)">Entalpi</text>
+          <defs>
+            <marker id="arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+      <div class="energy-panel">
+        <div class="energy-label endo">Endoterm (&Delta;H positif)</div>
+        <svg width="100%" viewBox="0 0 260 150" role="img" aria-label="Diagram energi endoterm">
+          <title>Diagram energi endoterm</title>
+          <!-- Reaktan level (lower) -->
+          <line x1="20" y1="110" x2="90" y2="110" stroke="#111" stroke-width="2"/>
+          <text x="55" y="128" text-anchor="middle" font-family="'Helvetica Neue',sans-serif" font-size="11" fill="#666">Reaktan</text>
+          <!-- Curve up -->
+          <path d="M90 110 C140 108 160 40 185 40" fill="none" stroke="#aaa" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <!-- Produk level (higher) -->
+          <line x1="185" y1="40" x2="248" y2="40" stroke="#111" stroke-width="2"/>
+          <text x="216" y="30" text-anchor="middle" font-family="'Helvetica Neue',sans-serif" font-size="11" fill="#666">Produk</text>
+          <!-- delta H arrow -->
+          <line x1="155" y1="108" x2="155" y2="42" stroke="#2563eb" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrB)" marker-start="url(#arrB)"/>
+          <text x="168" y="80" font-family="'Helvetica Neue',sans-serif" font-size="10" fill="#2563eb">&Delta;H &gt; 0</text>
+          <text x="10" y="80" font-family="'Helvetica Neue',sans-serif" font-size="10" fill="#aaa" transform="rotate(-90,10,80)">Entalpi</text>
+          <defs>
+            <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <h2>Persamaan Termokimia</h2>
+    <p class="prose">Persamaan termokimia adalah persamaan reaksi yang disertai nilai &Delta;H. Fase zat harus dicantumkan karena berpengaruh pada nilai &Delta;H.</p>
+    <div class="formula">Contoh persamaan termokimia:
+
+CH4(g) + 2O2(g) --> CO2(g) + 2H2O(l)    &Delta;H = -890 kJ/mol
+H2O(l) --> H2O(g)                         &Delta;H = +44 kJ/mol
+NaOH(aq) + HCl(aq) --> NaCl(aq) + H2O(l) &Delta;H = -57,3 kJ/mol</div>
+
+  </div>
+
+  <!-- ======================== JENIS DELTA H ======================== -->
+  <div id="jenis" class="section">
+
+    <h2>Kondisi Standar</h2>
+    <p class="prose">Perubahan entalpi standar (<strong>&Delta;H&deg;</strong>) diukur pada kondisi baku: suhu 298 K (25 &deg;C), tekanan 1 atm (101,3 kPa), dan konsentrasi 1 M untuk larutan. Superscript &deg; menandakan kondisi standar ini.</p>
+
+    <h2>1. Entalpi Pembentukan Standar (&Delta;H&deg;f)</h2>
+    <p class="prose">Kalor yang diserap atau dilepas saat <strong>1 mol senyawa terbentuk</strong> dari unsur-unsurnya dalam wujud paling stabil pada kondisi standar. Unsur dalam keadaan standar memiliki &Delta;H&deg;f = 0 kJ/mol.</p>
+    <div class="formula">C(s,grafit) + O2(g) --> CO2(g)    &Delta;H&deg;f = -393,5 kJ/mol
+H2(g) + 1/2 O2(g) --> H2O(l)     &Delta;H&deg;f = -285,8 kJ/mol
+N2(g) + 2H2(g) --> N2H4(l)       &Delta;H&deg;f = +50,6 kJ/mol</div>
+    <p class="prose">Data &Delta;H&deg;f digunakan untuk menghitung &Delta;H reaksi apapun menggunakan rumus:</p>
+    <div class="formula">&Delta;H&deg;_reaksi = &Sigma; [n x &Delta;H&deg;f (produk)] - &Sigma; [n x &Delta;H&deg;f (reaktan)]</div>
+
+    <h2>2. Entalpi Pembakaran Standar (&Delta;H&deg;c)</h2>
+    <p class="prose">Kalor yang dilepas saat <strong>1 mol zat terbakar sempurna</strong> dalam oksigen berlebih pada kondisi standar. Selalu bernilai negatif karena pembakaran adalah proses eksoterm.</p>
+    <div class="formula">CH4(g) + 2O2(g) --> CO2(g) + 2H2O(l)   &Delta;H&deg;c = -890 kJ/mol
+C8H18(l) + 25/2 O2(g) --> 8CO2(g) + 9H2O(l)  &Delta;H&deg;c = -5471 kJ/mol
+C6H12O6(s) + 6O2(g) --> 6CO2(g) + 6H2O(l)    &Delta;H&deg;c = -2803 kJ/mol</div>
+
+    <h2>3. Entalpi Netralisasi (&Delta;H&deg;netr)</h2>
+    <p class="prose">Kalor yang dilepas saat <strong>1 mol air terbentuk</strong> dari reaksi asam dan basa. Untuk asam kuat + basa kuat nilainya relatif konstan karena reaksi intinya selalu sama: H<sup>+</sup> + OH<sup>-</sup> &rarr; H<sub>2</sub>O.</p>
+    <div class="formula">H+(aq) + OH-(aq) --> H2O(l)            &Delta;H&deg;netr = -57,3 kJ/mol
+HCl(aq) + NaOH(aq) --> NaCl(aq) + H2O  &Delta;H&deg;netr = -57,3 kJ/mol
+CH3COOH + NaOH --> ...                  &Delta;H&deg;netr ~ -55 kJ/mol (asam lemah)</div>
+
+    <h2>4. Entalpi Pelarutan (&Delta;H&deg;sol)</h2>
+    <p class="prose">Kalor yang diserap atau dilepas saat <strong>1 mol zat larut sempurna</strong> dalam pelarut (air berlebih) hingga membentuk larutan encer. Nilainya bergantung pada keseimbangan energi kisi kristal dan energi hidrasi ion.</p>
+    <div class="formula">NaCl(s) --> Na+(aq) + Cl-(aq)     &Delta;H&deg;sol = +3,9 kJ/mol  (endoterm)
+NaOH(s) --> Na+(aq) + OH-(aq)    &Delta;H&deg;sol = -44,5 kJ/mol (eksoterm)
+NH4NO3(s) --> NH4+(aq) + NO3-(aq) &Delta;H&deg;sol = +25,7 kJ/mol (endoterm)</div>
+
+    <h2>5. Entalpi Dekomposisi</h2>
+    <p class="prose">Kalor saat <strong>1 mol senyawa terurai</strong> menjadi unsur-unsurnya atau senyawa lebih sederhana. Merupakan kebalikan dari entalpi pembentukan, sehingga tandanya berlawanan dengan &Delta;H&deg;f.</p>
+    <div class="formula">CO2(g) --> C(s) + O2(g)           &Delta;H = +393,5 kJ/mol
+H2O(l) --> H2(g) + 1/2 O2(g)     &Delta;H = +285,8 kJ/mol
+CaCO3(s) --> CaO(s) + CO2(g)     &Delta;H = +178,3 kJ/mol</div>
+
+    <h2>Perbandingan Semua Jenis &Delta;H</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Jenis</th>
+            <th>Simbol</th>
+            <th>Proses</th>
+            <th>Tanda umum</th>
+            <th>Catatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pembentukan</td>
+            <td><span class="eq">&Delta;H&deg;f</span></td>
+            <td>1 mol senyawa dari unsurnya</td>
+            <td>Variatif</td>
+            <td>Unsur murni = 0</td>
+          </tr>
+          <tr>
+            <td>Pembakaran</td>
+            <td><span class="eq">&Delta;H&deg;c</span></td>
+            <td>1 mol zat terbakar sempurna</td>
+            <td>Selalu negatif</td>
+            <td>Produk CO2 dan H2O</td>
+          </tr>
+          <tr>
+            <td>Netralisasi</td>
+            <td><span class="eq">&Delta;H&deg;netr</span></td>
+            <td>1 mol H2O dari asam+basa</td>
+            <td>Negatif (~-57 kJ/mol)</td>
+            <td>Konstan untuk asam/basa kuat</td>
+          </tr>
+          <tr>
+            <td>Pelarutan</td>
+            <td><span class="eq">&Delta;H&deg;sol</span></td>
+            <td>1 mol zat larut dalam air</td>
+            <td>Variatif</td>
+            <td>Tergantung energi kisi</td>
+          </tr>
+          <tr>
+            <td>Dekomposisi</td>
+            <td><span class="eq">&Delta;H&deg;dek</span></td>
+            <td>1 mol senyawa terurai</td>
+            <td>Umumnya positif</td>
+            <td>Kebalikan &Delta;H&deg;f</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ======================== CARA MENGHITUNG ======================== -->
+  <div id="hitung" class="section">
+
+    <h2>Metode 1: Kalorimetri</h2>
+    <p class="prose">Kalorimetri adalah pengukuran langsung kalor reaksi menggunakan alat kalorimeter. Perubahan suhu larutan diukur dan dikonversi menjadi nilai kalor menggunakan persamaan:</p>
+    <div class="formula">q = m &times; c &times; &Delta;T
+
+di mana:
+  q    = kalor yang diserap/dilepas (Joule)
+  m    = massa larutan (gram)
+  c    = kalor jenis larutan (J/g&deg;C), air = 4,184 J/g&deg;C
+  &Delta;T  = T_akhir - T_awal (&deg;C atau K)</div>
+
+    <p class="prose">Untuk kalorimeter yang memiliki kapasitas kalor (nilai kalorimeter C_kal):</p>
+    <div class="formula">q_reaksi = -(q_larutan + q_kalorimeter)
+q_kalorimeter = C_kal &times; &Delta;T
+
+Tanda negatif: kalor reaksi = negatif dari kalor yang diserap larutan+kalorimeter</div>
+
+    <div class="calc-block">
+      <div class="calc-title">Kalkulator Kalorimeter</div>
+      <div class="calc-field">
+        <label>Massa larutan (g)</label>
+        <input id="c-mass" type="number" value="100">
+      </div>
+      <div class="calc-field">
+        <label>Suhu awal T1 (&deg;C)</label>
+        <input id="c-t1" type="number" value="25">
+      </div>
+      <div class="calc-field">
+        <label>Suhu akhir T2 (&deg;C)</label>
+        <input id="c-t2" type="number" value="32">
+      </div>
+      <div class="calc-field">
+        <label>Kalor jenis c (J/g&deg;C)</label>
+        <input id="c-cval" type="number" value="4.184">
+      </div>
+      <div class="calc-field">
+        <label>C kalorimeter (J/&deg;C), opsional</label>
+        <input id="c-ckal" type="number" value="0" placeholder="default 0">
+      </div>
+      <button class="calc-btn" onclick="calcKal()">Hitung q reaksi</button>
+      <div class="calc-result" id="kal-result">Masukkan nilai lalu klik hitung.</div>
+    </div>
+
+    <h2>Metode 2: Hukum Hess</h2>
+    <p class="prose"><strong>Hukum Hess (1840)</strong> menyatakan bahwa perubahan entalpi total suatu reaksi tidak bergantung pada jalur reaksi, hanya pada keadaan awal dan akhir. Karena entalpi adalah fungsi keadaan, ia bersifat aditif.</p>
+    <div class="formula">&Delta;H_total = &Delta;H1 + &Delta;H2 + &Delta;H3 + ...</div>
+
+    <h3>Langkah Penerapan Hukum Hess</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <div class="step-t">Tulis reaksi target yang ingin diketahui &Delta;H-nya.</div>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <div class="step-t">Pilih reaksi-reaksi antara yang diketahui. Balik arah jika perlu (tanda &Delta;H berubah) dan kalikan koefisien jika perlu (&Delta;H ikut dikali).</div>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <div class="step-t">Jumlahkan semua reaksi. Zat yang sama muncul di sisi berlawanan saling mencoret (eliminasi).</div>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <div class="step-t">Jumlahkan semua nilai &Delta;H untuk mendapatkan &Delta;H reaksi target.</div>
+      </div>
+    </div>
+
+    <h3>Contoh: Mencari &Delta;H untuk C(s) + &frac12; O2(g) &rarr; CO(g)</h3>
+    <p class="prose">Data yang tersedia:</p>
+    <div class="hess-wrap">
+      <div class="hess-row">Reaksi 1:  C(s) + O2(g) --> CO2(g)         &Delta;H1 = -393,5 kJ/mol</div>
+      <div class="hess-row">Reaksi 2:  CO(g) + &frac12; O2(g) --> CO2(g)    &Delta;H2 = -283,0 kJ/mol</div>
+    </div>
+    <p class="prose">Strategi: pertahankan Reaksi 1, balik Reaksi 2 (sehingga CO2 menjadi reaktan dan CO menjadi produk):</p>
+    <div class="hess-wrap">
+      <div class="hess-row">Reaksi 1 (tetap):   C(s) + O2(g) --> <span class="cancel">CO2(g)</span>         &Delta;H = -393,5 kJ/mol</div>
+      <div class="hess-row">Reaksi 2 (dibalik): <span class="cancel">CO2(g)</span> --> CO(g) + &frac12; <span class="cancel">O2(g)</span>  &Delta;H = +283,0 kJ/mol</div>
+      <div class="hess-result">Hasil: C(s) + &frac12; O2(g) --> CO(g)          &Delta;H = -393,5 + 283,0 = -110,5 kJ/mol</div>
+    </div>
+
+    <h2>Metode 3: Data Energi Ikatan</h2>
+    <p class="prose">Energi ikatan (bond dissociation energy) adalah energi yang diperlukan untuk <strong>memutus 1 mol ikatan</strong> dalam fase gas pada kondisi standar. Pemutusan ikatan selalu membutuhkan energi (endoterm, +), sedangkan pembentukan ikatan selalu melepas energi (eksoterm, -).</p>
+    <div class="formula">&Delta;H = &Sigma; E(ikatan yang putus) - &Sigma; E(ikatan yang terbentuk)
+     = &Sigma; E(reaktan) - &Sigma; E(produk)
+
+Catatan: metode ini menggunakan energi ikatan rata-rata, sehingga hasilnya merupakan
+perkiraan (estimasi), bukan nilai eksak.</div>
+
+    <h3>Tabel Energi Ikatan Rata-Rata</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Ikatan</th><th>Energi (kJ/mol)</th><th>Ikatan</th><th>Energi (kJ/mol)</th><th>Ikatan</th><th>Energi (kJ/mol)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>H-H</td><td>436</td><td>C=O</td><td>799</td><td>N-H</td><td>391</td></tr>
+          <tr><td>O=O</td><td>498</td><td>O-H</td><td>463</td><td>N-N</td><td>163</td></tr>
+          <tr><td>C-H</td><td>413</td><td>C-O</td><td>360</td><td>N=N</td><td>418</td></tr>
+          <tr><td>C-C</td><td>347</td><td>C=C</td><td>614</td><td>N&equiv;N</td><td>945</td></tr>
+          <tr><td>C-F</td><td>485</td><td>C&equiv;C</td><td>839</td><td>Cl-Cl</td><td>242</td></tr>
+          <tr><td>C-Cl</td><td>339</td><td>C-N</td><td>305</td><td>H-Cl</td><td>431</td></tr>
+          <tr><td>C-Br</td><td>285</td><td>C=N</td><td>615</td><td>H-F</td><td>567</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Contoh: H2(g) + Cl2(g) &rarr; 2HCl(g)</h3>
+    <div class="formula">Ikatan yang putus:    H-H  = 436 kJ
+                         Cl-Cl = 242 kJ
+                         Total = 678 kJ
+
+Ikatan yang terbentuk: 2 x H-Cl = 2 x 431 = 862 kJ
+
+&Delta;H = 678 - 862 = -184 kJ/mol  (eksoterm)</div>
+
+    <div class="calc-block">
+      <div class="calc-title">Kalkulator Energi Ikatan</div>
+      <div class="calc-field">
+        <label>&Sigma; E ikatan yang putus (kJ)</label>
+        <input id="b-br" type="number" value="678" placeholder="kJ">
+      </div>
+      <div class="calc-field">
+        <label>&Sigma; E ikatan yang terbentuk (kJ)</label>
+        <input id="b-bf" type="number" value="862" placeholder="kJ">
+      </div>
+      <button class="calc-btn" onclick="calcBond()">Hitung &Delta;H</button>
+      <div class="calc-result" id="bond-result">Masukkan nilai lalu klik hitung.</div>
+    </div>
+
+    <h2>Perbandingan Ketiga Metode</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Aspek</th>
+            <th>Kalorimetri</th>
+            <th>Hukum Hess</th>
+            <th>Energi Ikatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Data yang dibutuhkan</td>
+            <td>m, c, &Delta;T (eksperimen)</td>
+            <td>Data &Delta;H reaksi lain</td>
+            <td>Tabel energi ikatan</td>
+          </tr>
+          <tr>
+            <td>Akurasi</td>
+            <td>Tinggi (eksperimental)</td>
+            <td>Tinggi (termodinamika)</td>
+            <td>Perkiraan (rata-rata)</td>
+          </tr>
+          <tr>
+            <td>Kebutuhan</td>
+            <td>Alat kalorimeter</td>
+            <td>Data literatur</td>
+            <td>Struktur Lewis molekul</td>
+          </tr>
+          <tr>
+            <td>Cocok untuk</td>
+            <td>Reaksi dapat dilakukan di lab</td>
+            <td>Reaksi sulit diukur langsung</td>
+            <td>Estimasi awal / perbandingan</td>
+          </tr>
+          <tr>
+            <td>Keterbatasan</td>
+            <td>Perlu kontrol kondisi ketat</td>
+            <td>Butuh data reaksi antara</td>
+            <td>Tidak akurat untuk ikatan polar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ======================== FENOMENA TERKINI ======================== -->
+  <div id="fenomena" class="section">
+
+    <h2>Kaitan Termokimia dengan Fenomena Masa Kini</h2>
+    <p class="prose">Prinsip termokimia bukan sekadar teori akademis. Berbagai fenomena penting di dunia saat ini dapat dijelaskan, dianalisis, dan dioptimasi menggunakan konsep perubahan entalpi, sistem, dan kalorimetri.</p>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Krisis Energi Global dan Bahan Bakar Fosil</div>
+        <span class="pheno-badge badge-exo">Eksoterm</span>
+      </div>
+      <div class="pheno-text">Pembakaran batu bara, minyak bumi, dan gas alam adalah reaksi eksoterm besar-besaran (&Delta;H&deg;c metana = -890 kJ/mol). Termokimia digunakan untuk menghitung <strong>nilai kalori bahan bakar</strong> dan efisiensi konversi energi. Riset bahan bakar hidrogen (H<sub>2</sub>) memanfaatkan &Delta;H&deg;c = -286 kJ/mol dengan produk samping hanya air, menjadikannya kandidat energi bersih masa depan yang sedang intensif diteliti.</div>
+    </div>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Thermal Runaway pada Baterai Lithium-Ion (EV)</div>
+        <span class="pheno-badge badge-exo">Eksoterm</span>
+      </div>
+      <div class="pheno-text">Reaksi elektrokimia dalam baterai Li-ion bersifat eksoterm saat pengosongan (discharge) dan endoterm saat pengisian (charging). <strong>Thermal runaway</strong> terjadi ketika panas yang dilepas reaksi melebihi kemampuan sistem membuang panas, memicu reaksi rantai eksoterm yang berujung kebakaran. Pemahaman mendalam tentang &Delta;H setiap reaksi elektroda adalah kunci desain sistem manajemen termal baterai kendaraan listrik yang aman.</div>
+    </div>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Perubahan Iklim dan Carbon Capture</div>
+        <span class="pheno-badge badge-endo">Endoterm</span>
+      </div>
+      <div class="pheno-text">CO<sub>2</sub> hasil pembakaran (eksoterm) berakumulasi di atmosfer. Teknologi <strong>Carbon Capture and Storage (CCS)</strong> mengandalkan reaksi absorpsi CO<sub>2</sub> endoterm, misalnya dengan amin seperti MEA (&Delta;H ~ +85 kJ/mol CO<sub>2</sub>). Termokimia digunakan untuk menghitung <em>energy penalty</em> proses CCS dan mengoptimasi sorbent agar efisiensi energinya meningkat. Fotosintesis alami juga reaksi endoterm (+2870 kJ/mol glukosa) yang menyerap CO<sub>2</sub>.</div>
+    </div>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Industri Farmasi dan Analisis Stabilitas Termal Obat</div>
+        <span class="pheno-badge badge-endo">Endoterm</span>
+      </div>
+      <div class="pheno-text">Kalorimetri digunakan luas dalam riset farmasi melalui teknik <strong>Differential Scanning Calorimetry (DSC)</strong>. DSC mengukur &Delta;H fusi, dekomposisi, dan transisi fase senyawa aktif obat, data kritis untuk uji stabilitas, penentuan titik lebur, deteksi polimorfi kristal, serta studi kompatibilitas antar bahan. Riset formulasi obat modern tidak dapat dilepaskan dari data termokimia senyawa aktif dan eksipiennya.</div>
+    </div>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Sintesis Amonia dan Ketahanan Pangan Global (Haber-Bosch)</div>
+        <span class="pheno-badge badge-exo">Eksoterm</span>
+      </div>
+      <div class="pheno-text">Seluruh produksi pupuk nitrogen dunia bertumpu pada proses Haber-Bosch: N<sub>2</sub>(g) + 3H<sub>2</sub>(g) &rarr; 2NH<sub>3</sub>(g), &Delta;H = -92 kJ/mol. Proses ini mengonsumsi sekitar 2% energi global. Termokimia mendasari optimasi kondisi reaksi (suhu, tekanan) dan menjadi alat hitung <strong>trade-off antara laju reaksi dan konversi kesetimbangan</strong>. Hukum Hess digunakan untuk memverifikasi &Delta;H dari data energi ikatan N&equiv;N, H-H, dan N-H.</div>
+    </div>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Siklus Air, Evaporasi, dan Pola Cuaca Ekstrem</div>
+        <span class="pheno-badge badge-endo">Endoterm</span>
+      </div>
+      <div class="pheno-text">Evaporasi air (&Delta;H_vap = +44 kJ/mol) menyerap panas dari permukaan bumi dan menjadi mekanisme pendingin alami terbesar di planet ini. Pemanasan global mengubah laju evaporasi dan pola presipitasi secara signifikan. Termokimia mendasari pemodelan <strong>energi laten</strong> dalam sistem iklim, prediksi intensitas badai, dan analisis neraca energi permukaan bumi yang digunakan dalam model iklim global.</div>
+    </div>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Metabolisme Tubuh, Gizi, dan Kalorimetri Makanan</div>
+        <span class="pheno-badge badge-exo">Eksoterm</span>
+      </div>
+      <div class="pheno-text">Nilai kalori makanan diukur menggunakan <strong>kalorimeter bom</strong>: karbohidrat ~4 kkal/g, lemak ~9 kkal/g, protein ~4 kkal/g. Respirasi seluler (C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub> &rarr; 6CO<sub>2</sub> + 6H<sub>2</sub>O, &Delta;H = -2803 kJ/mol) adalah reaksi eksoterm bertahap yang menghasilkan ATP dan mempertahankan suhu tubuh 37 &deg;C. Riset tentang diet dan metabolisme energi memanfaatkan data termokimia senyawa-senyawa biomolekul.</div>
+    </div>
+
+    <div class="pheno">
+      <div class="pheno-head">
+        <div class="pheno-title">Material Penyimpan Energi Termal (Phase Change Materials)</div>
+        <span class="pheno-badge badge-endo">Endoterm</span>
+      </div>
+      <div class="pheno-text"><strong>Phase Change Materials (PCM)</strong> adalah material yang menyerap atau melepas sejumlah besar kalor saat berubah fase (padat ke cair atau sebaliknya) pada suhu konstan. Ini adalah aplikasi langsung dari entalpi fusi (&Delta;H_fus). PCM digunakan dalam sistem bangunan hemat energi, pendinginan panel surya, sistem penyimpanan energi terbarukan, dan pakaian termoregulasi. Seleksi dan karakterisasi PCM sepenuhnya berbasis data termokimia.</div>
+    </div>
+
+    <h2>Arah Riset Termokimia Kontemporer</h2>
+    <p class="prose">Kemampuan mengukur, menghitung, dan memprediksi &Delta;H secara akurat menjadi fondasi pengembangan teknologi energi masa depan:</p>
+    <div class="tags">
+      <span class="tag tag-blue">Thermochemical energy storage</span>
+      <span class="tag tag-blue">Green hydrogen production</span>
+      <span class="tag tag-green">CO2 mineralization &amp; CCS</span>
+      <span class="tag tag-green">Biofuel enthalpy mapping</span>
+      <span class="tag tag-amber">Phase change materials (PCM)</span>
+      <span class="tag tag-amber">High-entropy alloys</span>
+      <span class="tag tag-red">Thermal runaway prevention</span>
+      <span class="tag tag-gray">Reaction calorimetry in flow chemistry</span>
+      <span class="tag tag-gray">Computational thermochemistry (DFT)</span>
+      <span class="tag tag-blue">Solid-state battery electrolytes</span>
+    </div>
+
+  </div>
+
+  <div style="height:4rem"></div>
+
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('#main-nav button').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0 });
+}
+
+function calcKal() {
+  var m    = parseFloat(document.getElementById('c-mass').value) || 0;
+  var t1   = parseFloat(document.getElementById('c-t1').value)   || 0;
+  var t2   = parseFloat(document.getElementById('c-t2').value)   || 0;
+  var c    = parseFloat(document.getElementById('c-cval').value) || 4.184;
+  var ckal = parseFloat(document.getElementById('c-ckal').value) || 0;
+  var dT   = t2 - t1;
+  var qLar = m * c * dT;
+  var qKal = ckal * dT;
+  var qRxn = -(qLar + qKal);
+  var type = qRxn < 0 ? 'Eksoterm (kalor dilepas ke lingkungan)' : qRxn > 0 ? 'Endoterm (kalor diserap dari lingkungan)' : 'Tidak ada perubahan kalor';
+  document.getElementById('kal-result').innerHTML =
+    'delta T         = ' + dT.toFixed(2) + ' \u00B0C\n' +
+    'q larutan       = ' + qLar.toFixed(2) + ' J\n' +
+    'q kalorimeter   = ' + qKal.toFixed(2) + ' J\n' +
+    'q reaksi        = ' + qRxn.toFixed(2) + ' J  =  ' + (qRxn/1000).toFixed(4) + ' kJ\n' +
+    'Jenis reaksi    = ' + type;
+}
+
+function calcBond() {
+  var ebr = parseFloat(document.getElementById('b-br').value) || 0;
+  var ebf = parseFloat(document.getElementById('b-bf').value) || 0;
+  var dH  = ebr - ebf;
+  var type = dH < 0 ? 'Eksoterm' : dH > 0 ? 'Endoterm' : 'Netral (delta H = 0)';
+  document.getElementById('bond-result').innerHTML =
+    'delta H = ' + ebr.toFixed(1) + ' - ' + ebf.toFixed(1) + ' = ' + dH.toFixed(1) + ' kJ/mol\n' +
+    'Jenis reaksi = ' + type;
+}
+</script>
+</body>
+</html>
